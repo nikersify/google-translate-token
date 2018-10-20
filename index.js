@@ -81,7 +81,9 @@ function updateTKK() {
             resolve();
         } else {
             got('https://translate.google.com').then(function (res) {
-                var code = res.body.match(/TKK=(.*?)\(\)\)'\);/g);
+                // Taken from vitalets/google-translate-token,
+                // thank you for updating it!
+                var code = res.body.match(/TKK='.*?';/g);
 
                 if (code) {
                     eval(code[0]);
